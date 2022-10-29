@@ -1,7 +1,10 @@
 <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="textFilterInput" [(ngModel)] ="filterText">
-<div *ngIf="filterText.length>3">
-  <small > <strong>{{filterText}}</strong> searching ...</small>
+<div 
+  *ngIf="filterText && filterText.length > 3"
+  class="alert alert-info">
+    <small > <strong>{{filterText}}</strong> searching ...</small>
 </div>
+
 <table class="table table-hover">
     <thead>
       <tr>
@@ -12,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of products | filterPipe: filterText">
         <td> {{product.productName | uppercase }} </td>
         <td> {{product.unitsInStock}} </td>
         <td> {{product.unitPrice}} TL</td>
