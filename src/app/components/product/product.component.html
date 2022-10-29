@@ -12,6 +12,7 @@
         <th scope="col">Units In Stock</th>
         <th scope="col">Unit Price</th>
         <th scope="col">VAT Price</th>
+        <th>Purchase</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         <td> {{product.unitsInStock}} </td>
         <td> {{product.unitPrice}} TL</td>
         <td> <strong> {{product.unitPrice | vatAdded:100 }} TL</strong></td>
+        <td><button  (click)="addToCart(product)" class="btn btn-outline-success" type="button" >Add To Cart</button></td>
       </tr>
     </tbody>
   </table>
