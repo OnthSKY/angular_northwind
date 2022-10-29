@@ -40,6 +40,10 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product:Product){
-    this.toastrService.success("Added To Cart", product.productName)
+    if (product.unitsInStock === 0){
+      this.toastrService.error("Added To Cart", product.productName)
+    }else{
+      this.toastrService.success("Added To Cart", product.productName)
+    }
   }
 }
