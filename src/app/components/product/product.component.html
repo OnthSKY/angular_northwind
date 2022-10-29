@@ -1,17 +1,22 @@
-<input class="form-control" type="search" placeholder="Search" aria-label="Search" id="textFilter">
+<input class="form-control" type="search" placeholder="Search" aria-label="Search" id="textFilterInput" [(ngModel)] ="filterText">
+<div *ngIf="filterText.length>3">
+  <small > <strong>{{filterText}}</strong> searching ...</small>
+</div>
 <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Units In Stock</th>
         <th scope="col">Unit Price</th>
+        <th scope="col">VAT Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
-        <td> {{product.productName}} </td>
+        <td> {{product.productName | uppercase }} </td>
         <td> {{product.unitsInStock}} </td>
         <td> {{product.unitPrice}} TL</td>
+        <td> <strong> {{product.unitPrice | vatAdded:100 }} TL</strong></td>
       </tr>
     </tbody>
   </table>
