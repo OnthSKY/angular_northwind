@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductComponent implements OnInit {
 
+  filterText = ""
   products : Product[]
   constructor(private productService:ProductService, private activatedRoute:ActivatedRoute) { }
 
