@@ -6,12 +6,39 @@
             </div>
             <div class="card-body">
                 <form [formGroup]="productAddForm">
+                    <div class="mb-3">
+                        <label for="productName">Product Name </label>
                         <div class="form-group">
-                            <input class="form-control" type="text" id="productName" formControlName="productName" placeholder="Product Name"/>
+                            <input class="form-control" type="text" id="productName" formControlName="productName"
+                                placeholder="Product Name" />
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="CategoryId">Category </label>
+                        <div class="form-group">
+                            <input class="form-control" type="number" id="categoryId" formControlName="categoryId"
+                                placeholder="Category" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitsInStock">Stock Amount </label>
+                        <div class="form-group">
+                            <input class="form-control" type="number" id="unitsInStock" formControlName="unitsInStock"
+                                placeholder="Stock Amount" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitPrice">Price </label>
+                        <div class="form-group">
+                            <input class="form-control" type="number" id="unitPrice" formControlName="UnitPrice"
+                                placeholder="Unit Price" />
+                        </div>
+                    </div>
                 </form>
             </div>
-
+            <div class="card-footer">
+                <button class="btn btn-fill btn-outline-primary" (click)="add()">Add</button>
+            </div>
         </div>
     </div>
 

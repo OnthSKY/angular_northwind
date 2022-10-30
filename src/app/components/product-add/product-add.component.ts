@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.css']
+  styleUrls: ['./product-add.component.css'],
 })
 export class ProductAddComponent implements OnInit {
+  productAddForm: FormGroup;
 
-  productAddForm: FormGroup
-
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.createProductAddForm()
+    this.createProductAddForm();
   }
 
-  createProductAddForm(){
+  createProductAddForm() {
     this.productAddForm = this.formBuilder.group({
-      productName: ["", Validators.required],
-      unitsPrice: ["", Validators.required],
-      unitsInStock: ["", Validators.required],
-      categoryId :["", Validators.required]
-    })
+      productName: ['', Validators.required],
+      unitsPrice: ['', Validators.required],
+      unitsInStock: ['', Validators.required],
+      categoryId: ['', Validators.required],
+    });
   }
+
+  add() {}
 }
