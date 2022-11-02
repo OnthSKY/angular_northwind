@@ -5,6 +5,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-add',
@@ -14,7 +16,11 @@ import {
 export class ProductAddComponent implements OnInit {
   productAddForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private productService: ProductService,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.createProductAddForm();
@@ -23,11 +29,32 @@ export class ProductAddComponent implements OnInit {
   createProductAddForm() {
     this.productAddForm = this.formBuilder.group({
       productName: ['', Validators.required],
-      unitsPrice: ['', Validators.required],
+      unitPrice: ['', Validators.required],
       unitsInStock: ['', Validators.required],
       categoryId: ['', Validators.required],
     });
   }
 
-  add() {}
+  add() {
+    if (this.productAddForm.valid) {
+      let productModel = Object.assign({}, this.productAddForm.value);
+      this.productService.add(productModel).subscribe(
+        (resp) => {
+          this.toastrService.success(resp.message, 'Success');
+        },
+        (responseError) => {
+          if (responseError.error.Errors.length > 0) {
+            for (let i = 0; i < responseError.error.Errors.length; i++) {
+              this.toastrService.error(
+                responseError.error.Errors[i].ErrorMessage,
+                'Validation Failure'
+              );
+            }
+          }
+        }
+      );
+    } else {
+      this.toastrService.error('Form has not filled', 'Be Carefull');
+    }
+  }
 }
